@@ -1,0 +1,18 @@
+# Core dependencies
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Optional CUDA support
+pycuda>=2021.1
+cupy-cuda11x>=10.0.0
+
+# System monitoring (fallback implementations available)
+psutil>=5.8.0
+py-cpuinfo>=8.0.0
+
+# Development and testing
+pytest>=6.2.0
+pytest-benchmark>=3.4.0
+
+# Note: Production deployment requires additional proprietary
+# hardware profiling libraries not included in this repository
