@@ -22,6 +22,7 @@ class TDigest:
         self.centroids: List[Centroid] = []
         self.count = 0
         self._cumulative_counts = []
+        self._compression_threshold = k * 2
     
     def update(self, value: float, count: int = 1) -> None:
         if not self.centroids:
