@@ -56,6 +56,10 @@ class NCCLController:
         self.consecutive_tail_violations = 0
         self.pacing_enabled = False
         
+        # Performance tracking
+        self.goodput_history = []
+        self.mode_switch_count = 0
+        
         self._setup_logging()
     
     def _setup_logging(self):
