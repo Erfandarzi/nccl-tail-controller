@@ -21,6 +21,7 @@ class TokenBucket:
         # Rate limiting state
         self.enabled = False
         self.current_rate = 0.0  # tokens per second
+        self.adaptive_rate = True
         
         # Hardware profiling
         self.bandwidth_estimator = BandwidthEstimator()
