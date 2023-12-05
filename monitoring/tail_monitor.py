@@ -22,6 +22,7 @@ class TailMonitor:
         # Stability tracking
         self._stable_windows = 0
         self._stability_threshold = 5
+        self._stability_variance_threshold = 0.1
         
     def record_latency(self, latency: float) -> None:
         with self._lock:
