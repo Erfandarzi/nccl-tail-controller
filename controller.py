@@ -101,6 +101,7 @@ class NCCLController:
     
     def _activate_defensive_mode(self):
         self.logger.info("Switching to defensive mode")
+        self.mode_switch_count += 1
         
         nccl_config = {
             'NCCL_ALGO': 'Tree',
@@ -120,6 +121,7 @@ class NCCLController:
     
     def _activate_performance_mode(self):
         self.logger.info("Switching to performance mode")
+        self.mode_switch_count += 1
         
         nccl_config = {
             'NCCL_ALGO': 'Ring',
@@ -161,7 +163,8 @@ class NCCLController:
             'pacing_enabled': self.pacing_enabled,
             'p99_latency': self.tail_monitor.get_percentile(0.99),
             'p999_latency': self.tail_monitor.get_percentile(0.999),
-            'sample_count': self.tail_monitor.get_sample_count()
+            'sample_count': self.tail_monitor.get_sample_count(),
+            'mode_switches': self.mode_switch_count
         }
 
 
