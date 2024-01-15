@@ -131,9 +131,11 @@ class NcclEnvironment:
         # Network fabric optimizations
         if self.topology.has_infiniband():
             self.current_config.p2p_net_chunksize = 256 * 1024
+            self.current_config.buffsize = 8 * 1024 * 1024  # 8MB for IB
         elif self.topology.has_efa():
             self.current_config.p2p_net_chunksize = 128 * 1024
             self.current_config.cross_nic = 1
+            self.current_config.buffsize = 4 * 1024 * 1024  # 4MB for EFA
     
     def validate_config(self) -> List[str]:
         warnings = []
