@@ -155,7 +155,15 @@ class NCCLController:
         return time_since_switch < min_dwell
     
     def _throughput_acceptable(self) -> bool:
-        return True
+        if not self.goodput_history:
+            return True
+        
+        # Check if current goodput is within budget
+        recent_goodput = sum(self.goodput_history[-8:]) / min(8, len(self.goodput_history))
+        baseline_goodput = max(self.goodput_history) if self.goodput_history else recent_goodput
+        
+        degradation = (baseline_goodput - recent_goodput) / baseline_goodput
+        return degradation <= self.config.goodput_budget
     
     def get_stats(self) -> Dict:
         return {
