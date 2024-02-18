@@ -3,7 +3,7 @@
 
 from .controller import NCCLController, ControllerConfig
 
-__version__ = "0.3.2"
+__version__ = "0.4.1"
 __author__ = "System Engineering Team"
 
 __all__ = ['NCCLController', 'ControllerConfig']

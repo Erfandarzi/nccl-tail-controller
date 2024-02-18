@@ -74,6 +74,13 @@ class TokenBucket:
         link_bandwidth = self.bandwidth_estimator.get_link_bandwidth()
         return link_bandwidth * self.target_bandwidth_ratio
     
+    def adjust_target_ratio(self, congestion_level: float):
+        # Adaptive bandwidth utilization based on congestion
+        if congestion_level > 0.8:
+            self.target_bandwidth_ratio = max(0.6, self.target_bandwidth_ratio - 0.05)
+        elif congestion_level < 0.3:
+            self.target_bandwidth_ratio = min(0.95, self.target_bandwidth_ratio + 0.02)
+    
     def _refill_tokens(self):
         now = time.time()
         elapsed = now - self.last_refill
