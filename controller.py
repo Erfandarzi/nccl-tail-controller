@@ -145,6 +145,10 @@ class NCCLController:
         relaunch_time = time.time() - start_time
         
         self.logger.info(f"Worker relaunch completed in {relaunch_time*1000:.1f}ms")
+        
+        # Update goodput tracking
+        if hasattr(self, '_last_goodput_measurement'):
+            self.goodput_history.append(self._last_goodput_measurement)
     
     def _at_epoch_boundary(self) -> bool:
         return self.tail_monitor.get_sample_count() % 64 == 0

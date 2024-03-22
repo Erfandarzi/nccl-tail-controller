@@ -120,6 +120,7 @@ def main():
             logger.info(f"Step {step + 1}/{args.steps}: "
                        f"Mode={controller_stats['mode']}, "
                        f"P99={controller_stats['p99_latency']*1000:.2f}ms, "
+                       f"Switches={controller_stats['mode_switches']}, "
                        f"Samples={controller_stats['sample_count']}")
     
     # Final statistics
