@@ -176,7 +176,9 @@ class NCCLController:
             'p99_latency': self.tail_monitor.get_percentile(0.99),
             'p999_latency': self.tail_monitor.get_percentile(0.999),
             'sample_count': self.tail_monitor.get_sample_count(),
-            'mode_switches': self.mode_switch_count
+            'mode_switches': self.mode_switch_count,
+            'nccl_config': self.nccl_env.get_config_summary(),
+            'hardware_stats': self.nic_profiler.get_hardware_stats()
         }
 
 
